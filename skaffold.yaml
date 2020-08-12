@@ -1,0 +1,13 @@
+apiVersion: skaffold/v2beta6
+kind: Config
+metadata:
+  name: trojan-gfw-benchmark
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+    - image: wi1dcard/tgb
+deploy:
+  kustomize:
+    paths:
+      - k8s

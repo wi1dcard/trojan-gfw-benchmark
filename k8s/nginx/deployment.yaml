@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  selector:
+    matchLabels: {} # Managed by Kustomize
+  template:
+    metadata:
+      labels: {} # Managed by Kustomize
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: nginx
+        - name: tls-cert
+          secret:
+            secretName: tls-cert
+        - name: benchmark-payload
+          hostPath:
+            path: /data/trojan-gfw-benchmark
+      containers:
+        - name: nginx
+          image: nginx:1.14.0-alpine
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 100m
+          ports:
+            - name: http
+              containerPort: 80
+            - name: h2c
+              containerPort: 82
+            - name: https
+              containerPort: 443
+          volumeMounts:
+            - mountPath: /cert
+              name: tls-cert
+            - mountPath: /etc/nginx/nginx.conf
+              name: config
+              subPath: nginx.conf
+            - mountPath: /usr/share/nginx/html
+              name: benchmark-payload
