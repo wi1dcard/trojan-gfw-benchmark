@@ -20,10 +20,6 @@ spec:
         - name: trojan-gfw
           image: wi1dcard/tgb
           imagePullPolicy: Always
-          args:
-            - trojan
-            - -c
-            - /config/config.json
           resources:
             limits:
               memory: 128Mi

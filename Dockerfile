@@ -19,4 +19,4 @@ COPY --from=builder /trojan /trojan
 WORKDIR /trojan
 
 RUN ln -s /trojan/trojan /usr/bin/trojan
-CMD [ "trojan" ]
+CMD [ "trojan", "-c", "/config/config.json" ]

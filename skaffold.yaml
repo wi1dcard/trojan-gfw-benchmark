@@ -7,6 +7,11 @@ build:
     sha256: {}
   artifacts:
     - image: wi1dcard/tgb
+      docker:
+        dockerfile: Dockerfile
+    - image: wi1dcard/tgb-go
+      docker:
+        dockerfile: go.Dockerfile
 deploy:
   kustomize:
     paths:
