@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: trojan-gfw
+  name: trojan-server
 spec:
   selector:
     matchLabels: {} # Managed by Kustomize
@@ -12,7 +12,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: trojan-gfw
+            name: trojan-server
         - name: tls-cert
           secret:
             secretName: tls-cert

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trojan-client
+spec:
+  selector:
+    matchLabels: {} # Managed by Kustomize
+  template:
+    metadata:
+      labels: {} # Managed by Kustomize
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: trojan-client
+      containers:
+        - name: trojan-gfw
+          image: wi1dcard/tgb
+          imagePullPolicy: Always
+          args:
+            - trojan
+            - -c
+            - /config/config.json
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 200m
+          ports:
+            - name: socks5
+              containerPort: 1080
+          volumeMounts:
+            - mountPath: /config
+              name: config
