@@ -4,12 +4,16 @@ The intent of this benchmark is to test if there's any effect on "that project" 
 
 ## Platform
 
-- CPU: `i5-7200u`
+- CPU: `Intel i5-7200U`
 - Memory: `ADATA DDR4 2400 SO-DIMM`
+- Minikube on Ubuntu 20.04
+- Server [`config.json`](k8s/trojan-gfw/server/config.json)
+- Client [`config.json`](k8s/trojan-gfw/client/config.json)
+- Nginx configuration: [`nginx.conf`](k8s/nginx/nginx.conf)
+- C++ implementation [`Dockerfile`](Dockerfile)
+- Golang implementation [`go.Dockerfile`](go.Dockerfile)
 
-The benchmark results are gathered with Kubernetes (Minikube on Ubuntu 20.04) in order to be easier to reproduce.
-
-For the detail of the running environments and versions, check out [Dockerfile](Dockerfile), [go.Dockerfile](go.Dockerfile), and [nginx.conf](k8s/nginx/nginx.conf).
+The benchmark results are gathered with Kubernetes in order to be easier to reproduce. For any detail of the running environments and versions, please see Dockerfiles.
 
 ## Results
 
